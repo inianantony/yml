@@ -1,7 +1,5 @@
 # Syntax
 
-## Objects
-
 ``` yaml
 person: # person object has a list of key value pairs
     name: &name "Antony" # this is a string
