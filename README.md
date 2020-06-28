@@ -4,7 +4,7 @@
 
 ``` yaml
 person: # person object has a list of key value pairs
-    name: "Antony" # this is a string
+    name: &name "Antony" # this is a string
     occupation: 'Engineer' # this is also a string
     age: 30 # this is a integer
     gpa : 4.2 # this is a floting point number
@@ -29,5 +29,18 @@ person: # person object has a list of key value pairs
         Description is one of four rhetorical modes, along with exposition, argumentation, and narration. 
         In practice it would be difficult to write literature that drew on just one of the four basic modes
     # the above `>` syntax will ask yaml to render in a single line even though we have line breaks
-    
+    code: |
+        echo "Example to show the formatting is preserved"
+        curl http://www.google.com
+        echo "we can just take this bash script bloack and execute it"
+    # we can look at anchoring
+    id: *name # if the name is updated then id will also be updated
+    # complex anchoring
+    base: &complex
+        variable1: "val"
+    base2:
+        <<: *complex # this will insert variable1: "val" here
+        val2: "val2"
+    floating_age: !!float 23 # this will be interpreted as 23.0
+    string_gpa: !!str 4.2 # this will be rendered as string
 ```
